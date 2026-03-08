@@ -1,0 +1,20 @@
+{
+  "name": "agent-cost-console",
+  "version": "1.0.0",
+  "private": true,
+  "description": "AI API cost monitoring dashboard — like Datadog for LLM API calls",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=packages/proxy\" \"npm run dev --workspace=packages/dashboard\"",
+    "build": "npm run build --workspace=packages/shared && npm run build --workspace=packages/proxy && npm run build --workspace=packages/dashboard",
+    "seed": "npm run seed --workspace=packages/proxy",
+    "start": "npm run start --workspace=packages/proxy",
+    "typecheck": "tsc --noEmit -p packages/shared/tsconfig.json && tsc --noEmit -p packages/proxy/tsconfig.json && tsc --noEmit -p packages/dashboard/tsconfig.json"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "typescript": "^5.4.0"
+  }
+}
